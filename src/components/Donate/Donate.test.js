@@ -1,10 +1,13 @@
 import React from "react";
-import { shallow } from "enzyme";
+import { render, screen } from '@testing-library/react';
 import Donate from "./Donate";
 
 describe("Donate", () => {
-  test("matches snapshot", () => {
-    const wrapper = shallow(<Donate />);
-    expect(wrapper).toMatchSnapshot();
+  test("matches snapshot and validate text", () => {
+    render (<Donate/>)
+    const linkElement = screen.getByText(/Dóname una cerveza/i);
+    expect(linkElement).toBeInTheDocument();
+    expect(screen).toMatchSnapshot(); 
+
   });
 });
